@@ -1,0 +1,69 @@
+<div id="welcome" v-cloak>
+  <div class="container" >
+    <h1>Welcome <%=name%>!</h1>
+    <hr/>
+    <p>This is a page where you can store your hobbies. An e-mail and sms will be sent to you for each hobby you store on this site. Don't worry! we won't share with anyone</p>
+    <div class="welcome-form-container">
+    <ajax-form class="form-inline" action="welcome" :syncing.sync="syncing" :cloud-error.sync="cloudError" :form-data="formData" :form-rules="formRules" :form-errors.sync="formErrors" @submitted="submittedForm()">
+        
+            <div class="form-group">
+                <input type="text" style="width:950px" class="form-control" placeholder="Enter Hobby"  v-model.trim="formData.hobby" focus-first>
+                <!-- <div class="invalid-feedback" v-if="formErrors.password">Please enter your password.</div> -->
+                <!-- <input type="text" style="width:950px" name = "hobby" placeholder="Enter hobby"> -->
+                </div>
+                <div class="form-group">
+                       
+                      <!--<a class="btn btn-info" href="/account/profile">Update my email</a>-->
+                      <ajax-button type="submit" :syncing="syncing" class="btn btn-outline-primary ml-2" >Save Hobby</ajax-button>  
+                    
+                </div>
+      </ajax-form> 
+
+      <div class="row" id="hobby">
+        <div class="col-12 text-primary">
+          <h2>Hobbies</h2>
+        </div>
+        <div class="col-12">
+          <table class="table table-striped">
+              <tr>
+            <% var i = 0; %>
+            <% myhobby.forEach(function(hobby) {%>
+              <td>
+                <%= ++i %>
+              </td>
+              
+              <td>
+                <%= hobby.h_content%>
+              </td>
+              </tr>
+              <% }); %>
+          </table>
+        </div>
+        
+        <!-- <%=myhobby%> -->
+      </div>
+    </div>  
+      
+   
+   
+    <!--@click="clickOpenDashboardModalButton()-->
+  </div>
+
+ <!-- <modal class="example-modal" v-if="dashboardModalVisible" @close="closeDashboardModal()" v-cloak>
+    <div class="modal-header">
+      <h2 class="modal-title">Example modal</h2>
+      <p>At your leisure, please peruse this excerpt from a whale of a tale.</p>
+      <hr/>
+      <button type="button" class="modal-close-button" data-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <h5 class="section-heading">Chapter 1: Loomings.</h5>
+      <p>Call me Ishmael. Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world. It is a way I have of driving off the spleen and regulating the circulation. Whenever I find myself growing grim about the mouth; whenever it is a damp, drizzly November in my soul; whenever I find myself involuntarily pausing before coffin warehouses, and bringing up the rear of every funeral I meet; and especially whenever my hypos get such an upper hand of me, that it requires a strong moral principle to prevent me from deliberately stepping into the street, and methodically knocking people's hats off—then, I account it high time to get to sea as soon as I can. This is my substitute for pistol and ball. With a philosophical flourish Cato throws himself upon his sword; I quietly take to the ship. There is nothing surprising in this. If they but knew it, almost all men in their degree, some time or other, cherish very nearly the same feelings towards the ocean with me.</p>
+    </div>
+    <div class="modal-footer flex-row-reverse justify-content-between">
+      <button type="button" data-dismiss="modal" class="btn btn-info">Close</button>
+      <button type="button" data-dismiss="modal" class="btn btn-outline-info">Cancel</button>
+    </div>
+  </modal>-->
+</div>
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>
